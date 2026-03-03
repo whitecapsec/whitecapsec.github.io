@@ -175,7 +175,6 @@ navbar_items = [
     { code = "en", nav_items = [
         { url = "$BASE_URL/", name = "Home" },
         { url = "$BASE_URL/posts", name = "Writings " },
-        { url = "$BASE_URL/gpts", name = "Cybersecurity GPTs" },
         { url = "$BASE_URL/about", name = "About us" },
     ] },
 ]
