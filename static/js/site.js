@@ -172,11 +172,12 @@ function search() {
 
 function documentReadyCallback() {
 
-  if (localStorage.getItem("theme") !== "light") {
-    document.body.setAttribute("theme", "dark");
+  if (document.body.getAttribute("theme") === "dark") {
     document.querySelectorAll("img, picture, video, pre").forEach(img => img.setAttribute("theme", "dark"));
     document.querySelectorAll(".vimeo, .youtube, .chart").forEach(video => video.setAttribute("theme", "dark"));
     document.getElementById("dark-mode").setAttribute("title", "Switch to light theme");
+  } else {
+    document.getElementById("dark-mode").setAttribute("title", "Switch to dark theme");
   }
 
   document.querySelector(".navbar-burger").addEventListener("click", () => {
@@ -215,20 +216,20 @@ function documentReadyCallback() {
   });
 
   document.getElementById("dark-mode").addEventListener("click", () => {
-    if (localStorage.getItem("theme") === "light") {
+    if (document.body.getAttribute("theme") === "dark") {
+      localStorage.setItem("theme", "light");
+      document.body.removeAttribute("theme");
+      document.querySelectorAll("img, picture, video, pre").forEach(img => img.removeAttribute("theme"));
+      document.querySelectorAll(".vimeo, .youtube, .chart").forEach(video => video.removeAttribute("theme"));
+
+      document.getElementById("dark-mode").setAttribute("title", "Switch to dark theme");
+    } else {
       localStorage.setItem("theme", "dark");
       document.body.setAttribute("theme", "dark");
       document.querySelectorAll("img, picture, video, pre").forEach(img => img.setAttribute("theme", "dark"));
       document.querySelectorAll(".vimeo, .youtube, .chart").forEach(video => video.setAttribute("theme", "dark"));
 
       document.getElementById("dark-mode").setAttribute("title", "Switch to light theme");
-    } else {
-      localStorage.setItem("theme", "light");
-      document.body.removeAttribute("theme", "dark");
-      document.querySelectorAll("img, picture, video, pre").forEach(img => img.removeAttribute("theme", "dark"))
-      document.querySelectorAll(".vimeo, .youtube, .chart").forEach(video => video.removeAttribute("theme", "dark"));
-
-      document.getElementById("dark-mode").setAttribute("title", "Switch to dark theme");
     }
   });
 
