@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://www.whitecapsec.com/sitemap.xml
